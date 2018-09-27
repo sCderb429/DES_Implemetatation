@@ -1,0 +1,14 @@
+//
+// Created by Scott Derbes on 9/27/18.
+//
+
+#ifndef DES_IMPLEMETATATION_INITIAL_PERMUTATION_H
+#define DES_IMPLEMETATATION_INITIAL_PERMUTATION_H
+
+
+class Initial_Permutation {
+
+};
+
+
+#endif //DES_IMPLEMETATATION_INITIAL_PERMUTATION_H
