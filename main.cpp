@@ -13,7 +13,12 @@ int main() {
     Initial_Permutation hex1(0x3a456b73, 0xE24d2537);
     hex1.hexToBin();
     hex1.permutationTable();
-    //hex1.initialTable();
+    hex1.binToHex();
+
+    Initial_Permutation hex2(0x624b3a2d, 0x92345f3d);
+    hex2.hexToBin();
+    hex2.permutationTable();
+    hex2.binToHex();
 
     return 0;
 }

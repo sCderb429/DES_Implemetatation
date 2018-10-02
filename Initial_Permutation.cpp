@@ -21,6 +21,7 @@ void Initial_Permutation::hexToBin() {
     for(int i = 0; i < 4; i++){
         holder = hexOne / divisor;//Gets the two digits of hexOne to become binary
         hexOne %= divisor;
+        std::cout << holder ;
         Initial_Permutation::splitter(holder);
         divisor /= 0x100;
     }
@@ -30,10 +31,11 @@ void Initial_Permutation::hexToBin() {
     for(int j = 0; j < 4; j++){
         holder = hexTwo / divisor; //Gets the two digits of hexTwo to become binary
         hexTwo %= divisor;
-        std::cout << holder << "\n"; //Why is this one higher than it needs to be?
+        std::cout << holder; //Why is this one higher than it needs to be?
         Initial_Permutation::splitter(holder);
         divisor /= 0x100;
     }
+    std::cout << "\n";
 
 }
 
@@ -46,44 +48,64 @@ void Initial_Permutation::splitter(std::bitset<8> splitBin) {
     }
 }
 
-void Initial_Permutation::initialTable() {
-    int i = 0;
-    int j = 0;
-    std::bitset<1> bit;
-    std::bitset<1> array[i][j];
-
-    auto counter = 1;
-    for ( i = 0; i < 8; ++i) {
-        for (j = 0; j < 8; ++j) {
-            bit = singleBin[counter];
-            array[i][j] = bit;
-            std::cout<< array[i][j];
-            counter++;
-        }
-    }
-    //Initial_Permutation::permutationTable();
-
-}
-
 void Initial_Permutation::permutationTable() {
-    std::bitset<1> *row;
-    std::bitset<1> *col;
-    std::bitset<1> bit;
-    for (int i = 0; i < 46; i += 6) {
-        bit = singleBin[i];
-        row[i] = bit;
-        bit = singleBin[i + 8];
-        row[i + 1] = bit;
-        for (int j = 0; j < 4; ++j) {
-            bit = singleBin[i + j];
-            col[j] = bit;
-        }
+    int findLocation;
+
+    auto location = new int[64] {58, 50, 42, 34, 26, 18, 10, 2,
+                                 60, 52, 44, 36, 28, 20, 12, 4,
+                                 62, 54, 46, 38, 30, 22, 14, 6,
+                                 64, 56, 48, 40, 32, 24, 16, 8,
+                                 57, 49, 41, 33, 25, 17, 9,  1,
+                                 59, 51, 43, 35, 27, 19, 11, 3,
+                                 61, 53, 45, 37, 29, 21, 13, 5,
+                                 63, 55, 47, 39, 31, 23, 15, 7 };
+
+    for (int i = 0; i < 64; ++i) {
+        findLocation = location[i];
+        permutation[i] = singleBin[findLocation];
+        std::cout << permutation[i];
     }
+    std::cout << "\n";
 }
 
 void Initial_Permutation::binToHex() {
 
+    Initial_Permutation::joinBits();
+    Initial_Permutation::stringToBit();
 }
 
+void Initial_Permutation::joinBits() {
+    std::bitset<1> holder;
 
+    for (int i = 0; i < 32; ++i) {
+        holder = permutation[i];
+        binOne = binOne + holder.to_string();
+    }
 
+    for (int i = 32; i < 64; ++i) {
+        holder = permutation[i];
+        binTwo = binTwo + holder.to_string();
+    }
+
+    std::cout << binOne <<"\n";
+    std::cout << binTwo <<"\n";
+}
+
+void Initial_Permutation::stringToBit() {
+    std::bitset<32> holdOne(binOne);
+    std::bitset<32> holdTwo(binTwo);
+
+    std::stringstream ss;
+    std::stringstream sp;
+    std::string number;
+    std::string number2;
+
+    ss << std::hex << std::uppercase << holdOne.to_ullong();
+    ss >> number;
+    std::cout << number << "\n";
+
+    sp << std::hex << std::uppercase << holdTwo.to_ullong();
+    sp >> number2;
+    std::cout << number2 << "\n \n";
+
+}
