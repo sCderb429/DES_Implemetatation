@@ -1,0 +1,12 @@
+To_Do DES Implementation
+
+Take Hexadecimal Input
+Take every two digits of hex and Convert all sets of two into binary
+Take binary and compare it to the first table, which simple consists of 64 bits from 1 to 64
+This first table shows the location on the second table that the binary should go to
+    The second table splits even and odd ints, with the even on the left half and the odd on the right
+
+The table is formed by adding all the digits from 1 to 64 in binary array and making it
+transform into the other array; just move the digits
+
+Convert to Hex
